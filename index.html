@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1713" />
+    <meta name="description" content="德州扑克职业化学习系统：基础数学、翻前、翻后、MTT、Cash、求解器与数据库分析。" />
+    <title>NLHE Poker Lab｜德州扑克职业化学习系统</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <noscript><div class="boot-warning"><strong>当前打开方式禁止运行网页功能</strong><span>请下载本文件，然后用 Safari 或 Chrome 打开。</span></div></noscript>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span>♠</span><span>♥</span></div>
+          <div><strong>NLHE</strong><small>POKER LAB</small></div>
+        </div>
+        <nav class="main-nav" aria-label="主导航">
+          <button class="nav-item active" data-view="home"><span>⌂</span>学习首页</button>
+          <button class="nav-item" data-view="roadmap"><span>◎</span>学习路线</button>
+          <button class="nav-item" data-view="knowledge"><span>▦</span>知识地图</button>
+          <button class="nav-item" data-view="glossary"><span>中</span>专业术语</button>
+          <button class="nav-item" data-view="assessment"><span>✓</span>水平测试</button>
+          <button class="nav-item" data-view="training"><span>↗</span>本周训练</button>
+          <button class="nav-item" data-view="hand"><span>♣</span>手牌复盘</button>
+          <button class="nav-item" data-view="profile"><span>●</span>我的资料</button>
+        </nav>
+        <div class="sidebar-footer"><a class="source-link" href="./NLHE-Poker-Lab-source.zip" download>↓ 下载源码 · MIT</a><div class="side-note"><span class="note-icon">!</span><p>扑克不是稳定获利方式。训练资金与生活资金应严格分开。</p></div></div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="menu-button" id="menuButton" aria-label="打开导航">☰</button>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="搜索术语、概念或训练主题…" autocomplete="off" /><kbd>⌘ K</kbd></div>
+          <div class="top-progress"><div><small>总进度</small><strong id="topProgressText">0%</strong></div><span class="mini-ring" id="topProgressRing" aria-hidden="true"></span></div>
+        </header>
+
+        <section class="view active" id="view-home" data-title="学习首页">
+          <div class="hero-panel">
+            <div class="hero-copy">
+              <span class="eyebrow">职业化学习系统 · v0.2 交互修复版</span>
+              <h1>先理解决策，<br /><em>再记住范围。</em></h1>
+              <p>从条件识别、范围构建到 EV 推理，逐步建立能迁移到陌生牌局的分析能力。</p>
+              <div class="hero-actions"><button class="primary-button" data-go="assessment">开始水平测试 <span>→</span></button><button class="ghost-button" data-go="roadmap">查看完整路线</button></div>
+            </div>
+            <div class="poker-table-card" aria-label="决策流程示意">
+              <div class="table-felt"><div class="dealer-chip">D</div><div class="seat seat-a"><span>BTN</span><strong>A♠</strong></div><div class="seat seat-b"><span>BB</span><strong>?</strong></div><div class="board-cards"><i>A♣</i><i>7♦</i><i>2♠</i></div><div class="pot-label"><small>决策顺序</small><b>条件 → 范围 → EV</b></div></div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="card today-card"><div class="section-heading"><div><span class="eyebrow">今天从这里开始</span><h2 id="todayTitle">完成玩家档案</h2></div><span class="day-pill" id="todayPill">STEP 1</span></div><p id="todayDescription">先告诉系统你主要打 MTT 还是 Cash，以及每周能投入多少时间。</p><div class="task-list" id="todayTasks"></div><button class="text-button" id="todayAction">开始今天的任务 →</button></article>
+            <article class="card progress-card"><div class="section-heading"><div><span class="eyebrow">学习进度</span><h2>你的训练仪表盘</h2></div></div><div class="big-progress"><div class="progress-ring" id="mainProgressRing"><strong id="mainProgressText">0%</strong><small>已完成</small></div></div><div class="stat-row"><div><strong id="statProfile">0</strong><span>档案</span></div><div><strong id="statTest">0</strong><span>测试题</span></div><div><strong id="statTraining">0</strong><span>训练项</span></div></div></article>
+            <article class="card principles-card"><div class="section-heading"><div><span class="eyebrow">三个策略层</span><h2>永远不要混在一起</h2></div></div><div class="principle-list"><button class="principle gto" data-info="gto"><span>GTO</span><div><strong>理论基准</strong><small>完整配置下的近似均衡</small></div><b>→</b></button><button class="principle simple" data-info="simple"><span>SIM</span><div><strong>简化策略</strong><small>压缩混合与尺度，方便执行</small></div><b>→</b></button><button class="principle exploit" data-info="exploit"><span>EXP</span><div><strong>针对性剥削</strong><small>只针对有证据的对手偏差</small></div><b>→</b></button></div></article>
+          </div>
+
+          <div class="section-title-row"><div><span class="eyebrow">核心模块</span><h2>你的专业扑克知识地图</h2></div><button class="text-button" data-go="knowledge">查看全部模块 →</button></div>
+          <div class="module-grid" id="homeModules"></div>
+        </section>
+
+        <section class="view" id="view-roadmap" data-title="学习路线">
+          <div class="page-intro"><span class="eyebrow">LEARNING ROADMAP</span><h1>七阶段职业化学习路线</h1><p>按达标标准前进，不按日历前进。勾选完成项会自动保存在这台设备。</p></div>
+          <div class="roadmap-layout"><div class="roadmap-list" id="roadmapList"></div><aside class="sticky-card"><span class="eyebrow">晋级原则</span><h3>不是“学过”，而是“能迁移”</h3><ul><li>闭卷解释核心概念</li><li>在陌生手牌中识别条件</li><li>给出候选动作与 EV 逻辑</li><li>区分 GTO、简化与剥削</li></ul><button class="primary-button full" data-go="assessment">先做诊断测试</button></aside></div>
+        </section>
+
+        <section class="view" id="view-knowledge" data-title="知识地图">
+          <div class="page-intro"><span class="eyebrow">KNOWLEDGE BASE</span><h1>按问题找到正确模块</h1><p>先选游戏和场景，再看策略。任何具体结论都必须带上筹码、位置、底池和赛事/抽水条件。</p></div>
+          <div class="segmented" id="knowledgeTabs" role="tablist"></div><div id="knowledgeContent"></div>
+        </section>
+
+        <section class="view" id="view-glossary" data-title="专业术语">
+          <div class="page-intro split"><div><span class="eyebrow">BILINGUAL GLOSSARY</span><h1>中英双语专业术语</h1><p>每个术语包含英文原词、中文解释和具体例子。</p></div><div class="page-search"><span>⌕</span><input id="glossarySearch" type="search" placeholder="例如：底池赔率 / Pot Odds" /></div></div>
+          <div class="filter-row" id="glossaryFilters"></div><div class="glossary-grid" id="glossaryGrid"></div><div class="empty-state" id="glossaryEmpty" hidden><strong>没有找到匹配术语</strong><p>试试英文缩写或更短的关键词。</p></div>
+        </section>
+
+        <section class="view" id="view-assessment" data-title="水平测试">
+          <div class="page-intro split"><div><span class="eyebrow">DIAGNOSTIC TEST</span><h1>六维度个人水平评估</h1><p>36 题，建议闭卷完成。答案自动保存在这台设备，不会上传。</p></div><div class="test-meter"><strong id="testAnswered">0 / 36</strong><span>已作答</span><div class="meter"><i id="testMeterBar"></i></div></div></div>
+          <div class="notice"><span>i</span><p>不会时请写“缺少哪些信息”和条件式思路。专业分析不等于猜一个动作。</p></div>
+          <div class="test-toolbar"><div class="segmented compact" id="testTabs"></div><button class="ghost-button small" id="exportAnswers">导出答案</button></div>
+          <div id="testQuestions"></div><div class="test-footer"><button class="ghost-button" id="clearTest">清空本次测试</button><button class="primary-button" id="finishTest">完成并查看评分方法</button></div>
+        </section>
+
+        <section class="view" id="view-training" data-title="本周训练">
+          <div class="page-intro split"><div><span class="eyebrow">WEEK ONE</span><h1>诊断驱动的第一周计划</h1><p>每天约 60 分钟。测试后，把最低分项放进第 3、4 天，次低项放进第 5 天。</p></div><div class="week-score"><strong id="weekPercent">0%</strong><span>本周完成</span></div></div>
+          <div class="week-grid" id="weekGrid"></div><div class="card week-rule"><div><span class="eyebrow">本周通过标准</span><h2>从“知道”到“能解释”</h2></div><ul><li>错题复测达到 80%</li><li>完成 5 手牌复盘</li><li>任何结论先写适用条件</li><li>生成至少 8 张间隔复习卡</li></ul></div>
+        </section>
+
+        <section class="view" id="view-hand" data-title="手牌复盘">
+          <div class="page-intro"><span class="eyebrow">HAND REVIEW</span><h1>标准手牌提交生成器</h1><p>按顺序填写，系统会生成一份可直接发给我分析的完整文本。未知信息可留空。</p></div>
+          <form class="hand-form" id="handForm"><div class="form-section"><div class="form-section-title"><span>01</span><div><h2>游戏与结构</h2><p>决定分析使用 Cash EV、Chip EV、ICM 还是 PKO 模型。</p></div></div><div class="form-grid" id="handGameFields"></div></div><div class="form-section"><div class="form-section-title"><span>02</span><div><h2>座位、筹码与对手</h2><p>有效筹码必须按具体对手计算。</p></div></div><div class="form-grid" id="handPlayerFields"></div></div><div class="form-section"><div class="form-section-title"><span>03</span><div><h2>逐街行动</h2><p>写清每个尺度、底池和剩余后手。</p></div></div><div class="form-grid streets" id="handStreetFields"></div></div><div class="form-actions"><span id="handSaveStatus">草稿会自动保存在本机</span><button type="button" class="ghost-button" id="clearHand">清空</button><button type="submit" class="primary-button">生成提交文本</button></div></form>
+          <div class="generated-output" id="handOutput" hidden><div class="section-heading"><div><span class="eyebrow">已生成</span><h2>复制后直接发给我</h2></div><button class="ghost-button small" id="copyHand">复制文本</button></div><pre id="handOutputText"></pre></div>
+        </section>
+
+        <section class="view" id="view-profile" data-title="我的资料">
+          <div class="page-intro"><span class="eyebrow">PLAYER PROFILE</span><h1>先让训练适合你的牌局</h1><p>填写后自动保存在这台设备。你可以导出备份，也可以直接复制给我。</p></div>
+          <form class="profile-form" id="profileForm"><div class="profile-sections" id="profileSections"></div><div class="form-actions"><span id="profileStatus">尚未填写</span><button type="button" class="ghost-button" id="exportProfile">导出资料</button><button type="submit" class="primary-button">保存玩家档案</button></div></form>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="infoModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" aria-label="关闭">×</button><span class="eyebrow" id="modalTag"></span><h2 id="modalTitle"></h2><p id="modalBody"></p><div class="modal-example" id="modalExample"></div></div></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
